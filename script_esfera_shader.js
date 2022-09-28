@@ -3,40 +3,19 @@
 // Fuentes
 //https://threejs.org/docs/#manual/en/introduction/Creating-a-scene -->
 //https://r105.threejsfundamentals.org/threejs/lessons/threejs-primitives.html  -->
-
-
 let scene;
 let camera;
-let renderer;
-let objetos = []
-let uniforms = {}
+let renderres;
 
-function init() {
-  scene = new THREE.Scene()
-  
-  camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000)
-  camera.position.z = 5
-  
-  renderer = new THREE.WebGLRenderer()
-  renderer.setSize(window.innerWidth, window.innerHeight)
-  
-  document.body.appendChild(renderer.domElement)
-  adjustLighting()
-  addBasicCube()
-  addExperimentalCube()
-  //addExperimentalLightCube()
-  animationLoop()
-}
-
-scene = new THREE.Scene();
-camera = new THREE.PerspectiveCamera(
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(
         75,
         window.innerWidth / window.innerHeight,
         0.1,
         1000
       );
 
-renderer = new THREE.WebGLRenderer();
+const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
