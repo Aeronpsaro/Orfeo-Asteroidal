@@ -23,20 +23,35 @@ function init() {
 			document.body.appendChild( renderer.domElement );
 			
   //Objetos
-  Esfera(0,1,10,10, 0xffff00)
-  Esfera(2.5,1,10,10, 0xf0f00f)
+  Esfera(0,1,10,10)
+  
+  //Iluminación
+  Luz()
   
   //Posición de la cámara
   camera.position.z = 5;
   
+  
+  //addExperimentalLightCube()
+  //animationLoop()
+}
+
+function Luz() {
+    let LuzPuntual = new THREE.PointLight(0xdddddd)
+    //pointLight.position.set(-5, -3, 3)
+    LuzPuntual.position.set(0, 0, 10)
+    scene.add(LuzPuntual)
+  
+    let LuzAmbiente = new THREE.AmbientLight(0x505050)
+    scene.add(LuzAmbiente)
 }
 
 
-function Esfera(desp, radio, nx, ny, col) {
+function Esfera(desp, radio, nx, ny) {
   let geometry = new THREE.SphereGeometry(radio, nx, ny)
   //Material con o sin relleno
-  let material = new THREE.MeshBasicMaterial({
-        color: col,
+  let material = new THREE.MeshLambertMaterial({
+        color: 0xffff00,
         //wireframe: true, //Descomenta para activar modelo de alambres
       });
   
