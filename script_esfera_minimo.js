@@ -1,6 +1,7 @@
 /* global THREE */
 
 // Fuentes
+<!-- Fuentes -->
 //https://threejs.org/docs/#manual/en/introduction/Creating-a-scene -->
 // https://r105.threejsfundamentals.org/threejs/lessons/threejs-primitives.html  -->
 const scene = new THREE.Scene();
