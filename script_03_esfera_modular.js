@@ -25,18 +25,6 @@ function init() {
   Esfera(0,0,0,1,10,10, 0xffff00);
   Esfera(1,0,0,1,10,10, 0xff00ff);
   
-  //Controles órbita
-//var controls = new THREE.OrbitControls(camera, renderer.domElement);
-  
-  //Rejilla de referencia indicando tamaño y divisiones
-			var grid = new THREE.GridHelper(20, 40);
-			grid.geometry.rotateX( Math.PI / 2 );
-			grid.position.set(0, .05, 0);
-			scene.add(grid);
-			
-			//Controles órbita
-			var controls = new THREE.OrbitControls(camera, renderer.domElement);
-  
 }
 
 
