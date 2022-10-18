@@ -7,7 +7,6 @@ let scene;
 let camera;
 let renderer;
 let objetos = [];
-let uniforms = {};
 
 init()
 animationLoop()
