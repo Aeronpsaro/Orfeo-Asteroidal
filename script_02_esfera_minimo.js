@@ -1,7 +1,6 @@
 /* global THREE */
 
 // Fuentes
-<!-- Fuentes -->
 //https://threejs.org/docs/#manual/en/introduction/Creating-a-scene -->
 // https://r105.threejsfundamentals.org/threejs/lessons/threejs-primitives.html  -->
 const scene = new THREE.Scene();
@@ -17,7 +16,7 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
 //Objeto esfera (radio, eltos ancho, eltos alto)
-const geometry = new THREE.SphereGeometry(1, 10, 10);
+const geometry = new THREE.SphereBufferGeometry(1, 10, 10);
 //ELEGIR UNA OPCIÓN
 //Material con o sin relleno
       const material = new THREE.MeshBasicMaterial({
