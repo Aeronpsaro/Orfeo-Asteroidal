@@ -4,12 +4,10 @@
 //https://threejs.org/docs/#manual/en/introduction/Creating-a-scene -->
 // https://r105.threejsfundamentals.org/threejs/lessons/threejs-primitives.html  -->
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(
-        75,
-        window.innerWidth / window.innerHeight,
-        0.1,
-        1000
-      );
+const camera = new THREE.PerspectiveCamera(75,
+        window.innerWidth / window.innerHeight, 0.1, 1000);
+//Posición de la cámara
+camera.position.set(0, 0, 5);
 
 const renderer = new THREE.WebGLRenderer();
 renderer.setSize(window.innerWidth, window.innerHeight);
@@ -17,18 +15,17 @@ document.body.appendChild(renderer.domElement);
 
 //Objeto esfera (radio, eltos ancho, eltos alto)
 const geometry = new THREE.SphereBufferGeometry(1, 10, 10);
-//ELEGIR UNA OPCIÓN
-//Material con o sin relleno
-      const material = new THREE.MeshBasicMaterial({
+//Material relleno (z-buffer) o alambres
+const material = new THREE.MeshBasicMaterial({
         color: 0xffff00,
-        wireframe: true, //Descomenta para activar modelo de alambres
+        wireframe: true, //Descomentar para activar modelo de alambres
       });
 
+//Malla resultante
 const esfera = new THREE.Mesh(geometry, material);
+//Se añade al grafo de escena
 scene.add(esfera);
 
-//Posición de la cámara
-camera.position.z = 5;
 
 //Bucle de animación
 function animate() {
