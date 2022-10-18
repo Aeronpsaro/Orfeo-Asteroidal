@@ -3,8 +3,6 @@
 // Fuentes
 //https://threejs.org/docs/#manual/en/introduction/Creating-a-scene -->
 //https://r105.threejsfundamentals.org/threejs/lessons/threejs-primitives.html  -->
-
-//window.addEventListener('load', init)
 let scene;
 let camera;
 let renderer;
@@ -17,23 +15,20 @@ animationLoop()
 function init() {
   scene = new THREE.Scene();
   camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
+  camera.position.set(0, 0, 5);
 
 	renderer = new THREE.WebGLRenderer();
 			renderer.setSize( window.innerWidth, window.innerHeight );
 			document.body.appendChild( renderer.domElement );
 			
   //Objetos
-  Esfera(0,1,10,10, 0xffff00)
-  Esfera(2.5,1,10,10, 0xf0f00f)
-  
-  //Posición de la cámara
-  camera.position.z = 5;
-  
+  Esfera(0,0,0,1,10,10, 0xffff00);
+  Esfera(1,0,0,1,10,10, 0xff00ff);
 }
 
 
-function Esfera(desp, radio, nx, ny, col) {
-  let geometry = new THREE.SphereGeometry(radio, nx, ny)
+function Esfera(px,py,pz, radio, nx, ny, col) {
+  let geometry = new THREE.SphereBufferGeometry(radio, nx, ny)
   //Material con o sin relleno
   let material = new THREE.MeshBasicMaterial({
         color: col,
@@ -41,23 +36,19 @@ function Esfera(desp, radio, nx, ny, col) {
       });
   
   let mesh = new THREE.Mesh(geometry, material)
-  mesh.position.x = desp
+  mesh.position.x = px
   scene.add(mesh)
   objetos.push(mesh)
 }
-
-
-
 
 
 //Bucle de animación
 function animationLoop() {
   requestAnimationFrame(animationLoop);
 
-  //Modifica rotación de la esfera
+  //Modifica rotación de todos los objetos
   for(let object of objetos) {
-    object.rotation.x += 0.01
-    //object.rotation.y += 0.03
+    object.rotation.x += 0.01;
   }
 
   renderer.render(scene, camera);
