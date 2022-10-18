@@ -24,6 +24,7 @@ function init() {
   //Objetos
   Esfera(0,0,0,1,10,10, 0xffff00);
   Esfera(1,0,0,1,10,10, 0xff00ff);
+  
 }
 
 
