@@ -6,8 +6,8 @@
 let scene;
 let camera;
 let renderer;
-let objetos = []
-let uniforms = {}
+let objetos = [];
+let uniforms = {};
 
 init()
 animationLoop()
@@ -18,12 +18,24 @@ function init() {
   camera.position.set(0, 0, 5);
 
 	renderer = new THREE.WebGLRenderer();
-			renderer.setSize( window.innerWidth, window.innerHeight );
-			document.body.appendChild( renderer.domElement );
+	renderer.setSize( window.innerWidth, window.innerHeight );
+	document.body.appendChild( renderer.domElement );
 			
   //Objetos
   Esfera(0,0,0,1,10,10, 0xffff00);
   Esfera(1,0,0,1,10,10, 0xff00ff);
+  
+  //Controles órbita
+//var controls = new THREE.OrbitControls(camera, renderer.domElement);
+  
+  //Rejilla de referencia indicando tamaño y divisiones
+			var grid = new THREE.GridHelper(20, 40);
+			grid.geometry.rotateX( Math.PI / 2 );
+			grid.position.set(0, .05, 0);
+			scene.add(grid);
+			
+			//Controles órbita
+			var controls = new THREE.OrbitControls(camera, renderer.domElement);
   
 }
 
