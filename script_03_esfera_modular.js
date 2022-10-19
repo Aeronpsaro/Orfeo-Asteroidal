@@ -14,7 +14,7 @@ animationLoop()
 function init() {
   scene = new THREE.Scene();
   camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
-  camera.position.set(0, 0, 5);
+  camera.position.set(0, 0, 50);
 
 	renderer = new THREE.WebGLRenderer();
 	renderer.setSize( window.innerWidth, window.innerHeight );
@@ -36,7 +36,7 @@ function Esfera(px,py,pz, radio, nx, ny, col) {
       });
   
   let mesh = new THREE.Mesh(geometry, material)
-  mesh.position.x = px
+  mesh.position.set(px,py,pz);
   scene.add(mesh)
   objetos.push(mesh)
 }
