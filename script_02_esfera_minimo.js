@@ -26,6 +26,8 @@ const esfera = new THREE.Mesh(geometry, material);
 //Se añade al grafo de escena
 scene.add(esfera);
 
+esfera.position.set(2,3,0);
+
 
 //Bucle de animación
 function animate() {
