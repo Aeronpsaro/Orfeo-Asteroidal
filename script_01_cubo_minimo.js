@@ -31,10 +31,10 @@ function animate() {
 	requestAnimationFrame( animate );
 
 	//Modifica posición del cubo
-	cubo.position.x += 0.01;
+	//cubo.position.x += 0.01;
 	//Modifica orientación del cubo
-	cubo.rotation.x += 0.01;
-	cubo.rotation.y += 0.01;
+	//cubo.rotation.x += 0.01;
+	//cubo.rotation.y += 0.01;
 
 	renderer.render( scene, camera );
 }

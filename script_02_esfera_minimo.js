@@ -14,7 +14,7 @@ renderer.setSize(window.innerWidth, window.innerHeight);
 document.body.appendChild(renderer.domElement);
 
 //Objeto esfera (radio, eltos ancho, eltos alto)
-const geometry = new THREE.SphereBufferGeometry(1, 10, 10);
+const geometry = new THREE.SphereBufferGeometry(1, 30, 10);
 //Material relleno (z-buffer) o alambres
 const material = new THREE.MeshBasicMaterial({
         color: 0xffff00,
@@ -33,6 +33,7 @@ function animate() {
 
   //Modifica rotación de la esfera
   esfera.rotation.x += 0.01;
+  esfera.rotation.z += 0.01;
 
   renderer.render(scene, camera);
 }
