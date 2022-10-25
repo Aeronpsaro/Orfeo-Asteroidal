@@ -54,9 +54,9 @@ function init() {
   Esfera(3.0, 0, 0, 0.8, 10, 10, 0x0000ff);*/
 
   //Objetos Phong
-  EsferaPhong(-3.0,0,0,0.8,10,10, 0xff0000);
-				EsferaPhong(0.0,0,0,0.8,10,10, 0x00ff00);
-				EsferaPhong(3.0,0,0,0.8,10,10, 0x0000ff);
+  EsferaPhong(-3.0, 0, 0, 0.8, 10, 10, 0xff0000);
+  EsferaPhong(0.0, 0, 0, 0.8, 10, 10, 0x00ff00);
+  EsferaPhong(3.0, 0, 0, 0.8, 10, 10, 0x0000ff);
 
   //Luces
   //Luz ambiente
@@ -66,7 +66,6 @@ function init() {
 				//Luz ambiente GUI
 				const Lamb_Info = gui.addFolder('luz ambiente');
 				const Lamb_Params = { color: Lamb.color.getHex() };
-				//Lamb_Info.add(Lamb, 'visible');
 				
 				Lamb_Info.add(Lamb, 'intensity', 0, 1, 0.1);
 				Lamb_Info
