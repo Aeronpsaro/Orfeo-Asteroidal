@@ -1,8 +1,8 @@
 let scene, renderer;
-let cameraxy, camerayz, cameraxz;
+let camera;
 let info;
 let grid;
-let camcontrols1, camcontrols2;
+let camcontrols1;
 let objetos = [];
 
 init()
@@ -31,9 +31,6 @@ function init() {
 	renderer.setSize( window.innerWidth, window.innerHeight );
 	document.body.appendChild( renderer.domElement );
 	
-	//Objetos
-	Esfera(0,0,0,0.8,10,10, 0xffff00);
-	
 	camcontrols1 = new THREE.OrbitControls(camera, renderer.domElement);
 	
 	//Rejilla de referencia indicando tamaño y divisiones
@@ -42,6 +39,9 @@ function init() {
 	grid.geometry.rotateX( Math.PI / 2 );
 	grid.position.set(0, 0, .05);
 	scene.add(grid);
+  
+  //Objetos
+	Esfera(0,0,0,0.8,10,10, 0xffff00);
 }
 
 
