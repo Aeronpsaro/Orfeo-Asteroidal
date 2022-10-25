@@ -94,13 +94,12 @@ function init() {
 				});
 				Ldir_Info.add(Ldir, 'intensity', 0, 1, 0.25);
 				Ldir_Info.add(Ldir.position, 'y', 1, 4, 0.5);
-				//Ldir_Info.add(Ldir, 'castShadow');
 				Ldir_Info
 				  .addColor(Ldir_Params, 'color')
 				  .onChange((value) => Ldir.color.set(value));
 				Ldir_Info.open();*/
 
-  //Luz spot y asistente
+  //Luz focal y asistente
   /*const Lspot = new THREE.SpotLight(0x00ff00, 1, 8, Math.PI / 8, 0);
 				Lspot.position.set(0, 2, 2);
 				const LspotHelper = new THREE.SpotLightHelper(Lspot);
@@ -117,7 +116,6 @@ function init() {
 				});
 				Lspot_Info.add(Lspot, 'intensity', 0, 4, 0.5);
 				Lspot_Info.add(Lspot, 'angle', Math.PI / 16, Math.PI / 2, Math.PI / 16);
-				//Lspot_Info.add(Lspot, 'castShadow');
 				Lspot_Info.open();*/
 
   //Luz puntual y asistente
@@ -140,7 +138,6 @@ function init() {
 				Lpunt_Info.add(Lpunt.position, 'x', -2, 4, 0.5);
 				Lpunt_Info.add(Lpunt.position, 'y', -2, 4, 0.5);
 				Lpunt_Info.add(Lpunt.position, 'z', -2, 4, 0.5);
-				//Lpunt_Info.add(Lpunt, 'castShadow');
 				Lpunt_Info
 				  .addColor(Lpunt_Params, 'color')
 				  .onChange((value) => Lpunt.color.set(value));
