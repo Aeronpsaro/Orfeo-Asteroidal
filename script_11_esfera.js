@@ -4,9 +4,10 @@ let info;
 let grid;
 let camcontrols1;
 let estrella, Planetas = [];
+let Lunas = [];
 let t0 = 0;
 let accglobal = 0.001;
-let timestamp
+let timestamp;
 
 init()
 animationLoop()
@@ -45,7 +46,9 @@ function init() {
   
   //Objetos
 	creaEstrella(1.8, 0xffff00);
-  creaPlaneta(0.8, 2.0, 1.2,0x00ff00 )
+  creaPlaneta(0.8, 4.0, 1.2,0x00ff00 , 1.2, 1.0);
+  creaPlaneta(0.4, 5.0, 1.5,0x0000ff , 0.5, 1.2);
+  creaLuna(Planetas[0],0.2,1.1,-3.5,0xff0000);
   
   //EsferaChild(objetos[0],3.0,0,0,0.8,10,10, 0x00ff00);
 }
@@ -57,18 +60,44 @@ function creaEstrella(rad,col) {
 	scene.add( estrella );
 }
 
-function creaPlaneta(radio, dist, vel, col) {
+function creaPlaneta(radio, dist, vel, col, f1, f2) {
 	let geom = new THREE.SphereGeometry(radio, 10, 10);
 	let mat = new THREE.MeshBasicMaterial({ color: col});
 	let planeta = new THREE.Mesh(geom, mat);
 	planeta.userData.dist = dist;
 	planeta.userData.speed = vel;
+  planeta.userData.f1 = f1;
+	planeta.userData.f2 = f2;
 
 	Planetas.push(planeta);
 	scene.add(planeta);
   
+  //Dibuja trayectoria, con
+	let curve = new THREE.EllipseCurve(
+		0,  0,            		// centro
+		dist*f1, dist*f2        // radios elipse
+		);
+		//Crea geometría
+		let points = curve.getPoints( 50 );
+		let geome = new THREE.BufferGeometry().setFromPoints( points );
+		let mate = new THREE.LineBasicMaterial( { color: 0xffffff } );
+		// Objeto
+		let orbita = new THREE.Line( geome, mate );
+		scene.add(orbita);
+  
   //Inicio tiempo
   t0 = Date.now();
+};
+
+function creaLuna(planeta, radio, dist, vel, col) {				
+	var geom = new THREE.SphereGeometry(radio, 10, 10);
+	var mat = new THREE.MeshBasicMaterial({ color: col});
+	var luna = new THREE.Mesh(geom, mat);
+	luna.userData.dist = dist;
+	luna.userData.speed = vel;
+
+	Lunas.push(luna);
+	planeta.add(luna);
 };
 	
 	
@@ -82,8 +111,15 @@ function creaPlaneta(radio, dist, vel, col) {
 		
 		//Modifica rotación de todos los objetos
 		for(let object of Planetas) {
-			object.position.x = Math.cos(timestamp * planeta.userData.speed) * planeta.userData.dist;
+			object.position.x = Math.cos(timestamp * object.userData.speed) * object.userData.f1 * object.userData.dist;
+      object.position.y = Math.sin(timestamp * object.userData.speed) * object.userData.f2 * object.userData.dist;
 		}
+    
+    //Modifica posición de cada luna
+    Lunas.forEach(function(luna) {
+      luna.position.x = Math.cos(timestamp * luna.userData.speed) * luna.userData.dist;
+      luna.position.y = Math.sin(timestamp * luna.userData.speed) * luna.userData.dist;
+    });
 		
 		renderer.render( scene, camera );
 		
