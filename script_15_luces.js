@@ -60,7 +60,7 @@ function init() {
 
   //Luces
   //Luz ambiente
-  /*const Lamb = new THREE.AmbientLight(0xffffff, 0.5);
+  const Lamb = new THREE.AmbientLight(0xffffff, 0.5);
 				scene.add(Lamb);
 				
 				//Luz ambiente GUI
@@ -71,10 +71,10 @@ function init() {
 				Lamb_Info
 				  .addColor(Lamb_Params, 'color')
 				  .onChange((value) => Lamb.color.set(value));
-				Lamb_Info.open();*/
+				Lamb_Info.open();
 
   //Luz direccional y asistente
-  /*const Ldir = new THREE.DirectionalLight(0xffffff, 0.5);
+  const Ldir = new THREE.DirectionalLight(0xffffff, 0.5);
 				Ldir.position.set(0, 2, 0);
 				//Sombras 
 				//Ldir.castShadow = true;
@@ -97,10 +97,10 @@ function init() {
 				Ldir_Info
 				  .addColor(Ldir_Params, 'color')
 				  .onChange((value) => Ldir.color.set(value));
-				Ldir_Info.open();*/
+				Ldir_Info.open();
 
   //Luz focal y asistente
-  /*const Lspot = new THREE.SpotLight(0x00ff00, 1, 8, Math.PI / 8, 0);
+  const Lspot = new THREE.SpotLight(0x00ff00, 1, 8, Math.PI / 8, 0);
 				Lspot.position.set(0, 2, 2);
 				const LspotHelper = new THREE.SpotLightHelper(Lspot);
 				scene.add(Lspot, LspotHelper);
@@ -116,10 +116,10 @@ function init() {
 				});
 				Lspot_Info.add(Lspot, 'intensity', 0, 4, 0.5);
 				Lspot_Info.add(Lspot, 'angle', Math.PI / 16, Math.PI / 2, Math.PI / 16);
-				Lspot_Info.open();*/
+				Lspot_Info.open();
 
   //Luz puntual y asistente
-  /*const Lpunt = new THREE.PointLight(0xffffff, 1, 8, 2);
+  const Lpunt = new THREE.PointLight(0xffffff, 1, 8, 2);
 				Lpunt.position.set(2, 2, 2);
 				const LpuntHelper = new THREE.PointLightHelper(Lpunt, 0.5);
 				scene.add(Lpunt, LpuntHelper);
@@ -141,7 +141,7 @@ function init() {
 				Lpunt_Info
 				  .addColor(Lpunt_Params, 'color')
 				  .onChange((value) => Lpunt.color.set(value));
-				Lpunt_Info.open();*/
+				Lpunt_Info.open();
 }
 
 function Esfera(px, py, pz, radio, nx, ny, col) {
