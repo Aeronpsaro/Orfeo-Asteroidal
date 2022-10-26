@@ -41,7 +41,8 @@ function init() {
 	scene.add(grid);
   
   //Objetos
-	Esfera(0,0,0,0.8,10,10, 0xffff00);
+	Esfera(0,0,0,1.8,10,10, 0xffff00);
+  EsferaChild(objetos[0],3.0,0,0,0.8,10,10, 0x00ff00);
 }
 
 
@@ -56,6 +57,20 @@ function Esfera(px,py,pz, radio, nx, ny, col) {
 		let mesh = new THREE.Mesh(geometry, material)
 		mesh.position.set(px,py,pz);
 		scene.add(mesh)
+		objetos.push(mesh)
+	}
+
+function EsferaChild(padre,px,py,pz, radio, nx, ny, col) {
+	let geometry = new THREE.SphereBufferGeometry(radio, nx, ny)
+	//Material con o sin relleno
+	let material = new THREE.MeshBasicMaterial({
+		color: col,
+		wireframe: true, //Descomenta para activar modelo de alambres
+		});
+		
+		let mesh = new THREE.Mesh(geometry, material)
+		mesh.position.set(px,py,pz);
+		padre.add(mesh)
 		objetos.push(mesh)
 	}
 	
