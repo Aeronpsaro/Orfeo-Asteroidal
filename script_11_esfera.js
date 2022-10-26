@@ -3,7 +3,10 @@ let camera;
 let info;
 let grid;
 let camcontrols1;
-let objetos = [];
+let estrella, Planetas = [];
+let t0 = 0;
+let accglobal = 0.001;
+let timestamp
 
 init()
 animationLoop()
@@ -41,48 +44,45 @@ function init() {
 	scene.add(grid);
   
   //Objetos
-	Esfera(0,0,0,1.8,10,10, 0xffff00);
-  EsferaChild(objetos[0],3.0,0,0,0.8,10,10, 0x00ff00);
+	creaEstrella(1.8, 0xffff00);
+  creaPlaneta(0.8, 2.0, 1.2,0x00ff00 )
+  
+  //EsferaChild(objetos[0],3.0,0,0,0.8,10,10, 0x00ff00);
 }
 
+function creaEstrella(rad,col) {
+	let geometry = new THREE.SphereGeometry( rad, 10, 10 );
+	let material = new THREE.MeshBasicMaterial( { color: col } );
+	estrella = new THREE.Mesh( geometry, material );
+	scene.add( estrella );
+}
 
-function Esfera(px,py,pz, radio, nx, ny, col) {
-	let geometry = new THREE.SphereBufferGeometry(radio, nx, ny)
-	//Material con o sin relleno
-	let material = new THREE.MeshBasicMaterial({
-		color: col,
-		wireframe: true, //Descomenta para activar modelo de alambres
-		});
-		
-		let mesh = new THREE.Mesh(geometry, material)
-		mesh.position.set(px,py,pz);
-		scene.add(mesh)
-		objetos.push(mesh)
-	}
+function creaPlaneta(radio, dist, vel, col) {
+	let geom = new THREE.SphereGeometry(radio, 10, 10);
+	let mat = new THREE.MeshBasicMaterial({ color: col});
+	let planeta = new THREE.Mesh(geom, mat);
+	planeta.userData.dist = dist;
+	planeta.userData.speed = vel;
 
-function EsferaChild(padre,px,py,pz, radio, nx, ny, col) {
-	let geometry = new THREE.SphereBufferGeometry(radio, nx, ny)
-	//Material con o sin relleno
-	let material = new THREE.MeshBasicMaterial({
-		color: col,
-		wireframe: true, //Descomenta para activar modelo de alambres
-		});
-		
-		let mesh = new THREE.Mesh(geometry, material)
-		mesh.position.set(px,py,pz);
-		padre.add(mesh)
-		objetos.push(mesh)
-	}
+	Planetas.push(planeta);
+	scene.add(planeta);
+  
+  //Inicio tiempo
+  t0 = Date.now();
+};
 	
 	
 	
 	//Bucle de animación
 	function animationLoop() {
+    
+    timestamp = (Date.now() - t0) * accglobal;
+    
 		requestAnimationFrame(animationLoop);
 		
 		//Modifica rotación de todos los objetos
-		for(let object of objetos) {
-			object.rotation.y += 0.01;
+		for(let object of Planetas) {
+			object.position.x = Math.cos(timestamp * planeta.userData.speed) * planeta.userData.dist;
 		}
 		
 		renderer.render( scene, camera );
